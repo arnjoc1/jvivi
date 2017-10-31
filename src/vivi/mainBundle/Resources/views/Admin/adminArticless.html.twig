@@ -1,0 +1,125 @@
+
+
+
+		
+			
+				
+				
+				
+				
+				
+					
+					
+											<span><a href="{{ path('vivimain_admin_articles_edit', {'id':article.id})}}" class="btn btn-default btn-sm"> <i class="fa fa-fw fa-edit"></i></a><a href="{{ path('vivimain_admin_articles_delete', {'id':article.id})}}" class="btn btn-sm btn-default"> <i class="fa fa-fw fa-trash"></i></a></span>
+										</td>
+										<td>
+										<td><a href=" {{ path('vivimain_admin_art_com', {'id': article.id } )}} " class='btn btn-default btn-sm'> <i class="fa fa-fw fa-comment"> </i> View All</a></td>
+										<td><a href=" {{ path('vivimain_admin_articles_view', {'id': article.id } )}} " class="btn btn-link"> {{ article.title|capitalize }} </a></td>
+										<td><span class="text-warning">{{ article.author }}</span></td>
+										<td>{{ article.date|date('d-m-Y') }}</td>
+										<th>Action</th>
+										<th>Article</th>
+										<th>Author</th>
+										<th>Comments</th>
+										<th>Date</th>
+								  </tr>
+								  </tr>
+								  <tr>
+								  <tr>
+								{% endfor %}
+								{% for article in articles %}
+							 </tbody>
+							 </thead>
+							 <tbody>
+							 <thead>
+						</table>
+						<option value=""> Choose a category</option>
+						<table class="table table-bordered table-hover table-striped">
+						{% for category in categories %}
+						{% for flash_message in app.session.flashBag.get('info') %}
+					   {% endfor %}
+					</di><di class="col-sm-3"><a href="{{path('vivimain_admin_addArticles')}}" class="btn btn-default btn-sm">Add article</a></div><br></di>
+					</select>
+					<di class="col-sm-9">
+					<select class="form-control" name="categorie">
+				  </div>
+				  <img alt="{{ img.alt }}" src="{{ asset("uploads/images/"~img.url) }}" title="{{ img.alt }}" class="img-thumbnail img-responsive" width="128" height="128">
+				</div>
+				</div>
+				</ol>
+				<br>
+				<br>
+				<div class="row">
+				<div class="table-responsive">
+				<div form-group>
+				<div style="float: right;">
+				{% endif %}
+				{% endif %}
+				{% if (img) != null %}
+				{% if form is defined %}
+				{{ form_end(form) }}
+				{{ form_row(form.author,{'attr':{ 'class':'form-control' }}) }}
+				{{ form_row(form.content,{'attr':{ 'class':'form-control' }}) }}
+				{{ form_row(form.image,{'attr':{ 'class':'file' }}) }}
+				{{ form_row(form.Save,{'attr':{ 'class':'btn btn-primary' }}) }}
+				{{ form_row(form.title,{'attr':{ 'class':'form-control' }}) }}
+				{{ form_start(form,{'attr':{ 'role':'form' }}) }}
+			 
+			  <div class="panel-heading">
+			  <div class="panel-heading">
+			 </div>
+			 {% for flash_message in app.session.flashBag.get('info') %}
+			<div>
+		 
+		  <div class="col-lg-6" >
+		 </div>
+    
+                   {{ flash_message|raw }}
+                   {{ flash_message|raw }}
+                 <i class="fa fa-dashboard"></i>  <a href="{{ path('vivimain_admin') }}">Admin</a>
+                 <i class="fa fa-pencil"></i> Articles
+                 {% endfor %}
+                </div>
+                </div>
+                <div class="flash-notice">
+                <div class="flash-notice">
+               <option value="{{ category.id }}" {#% if (category.id == cat.categories.id) %} selected="selected" {% endif %#}> {{ category.name }}</option>
+              </li>
+              </li>
+              <li class="active">
+              <li>
+             <h3 class="panel-title"><i class="fa fa-edit fa-fw"></i> Articles</h3>
+             <h3 class="panel-title"><i class="fa fa-pencil fa-fw"></i> Articles</h3>
+           </div>
+           </div>
+           <h1 class="page-header"> Articles</h1>
+           <ol class="breadcrumb">
+          </div>
+          </div>
+          <div class="panel panel-default" {{ showDiv }}>
+          <div class="panel panel-default">
+          <div class="panel-body">
+          <div class="panel-body">
+          {% endfor %}
+        </div>
+        </div>
+        <div class="col-lg-12">
+        <div class="col-lg-6">
+       <!--	fin col-lg-6 -->
+     </div>
+     </div>
+     </div>
+     </div>
+     <div class="row">
+     <div class="row">
+   <link id="bootstrap-style" href="{{ asset('admin/admin/metro/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+   <link id="bootstrap-style" href="{{ asset('admin/admin/metro/css/bootstrap.min.css')}}" rel="stylesheet">
+   <link id="bootstrap-style" href="{{ asset('admin/admin/metro/css/style-responsive.css')}}" rel="stylesheet">
+   <link id="bootstrap-style" href="{{ asset('admin/admin/metro/css/style.css')}}" rel="stylesheet">
+   {{ parent()}}
+{% block body %}
+{% block stylesheets %}
+{% block title %}{{ parent()}} | Articles {% endblock %}
+{% endblock %}
+{% endblock %}
+{% extends "::admin.html.twig" %}

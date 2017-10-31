@@ -1,0 +1,46 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parent()}} | add article {% endblock %}
+
+
+{% block body %}
+  <div class='container'>
+    <h2>Add an article</h2>
+    <div class='col-xs-4'>
+    {{ form_start(form,{'attr':{ 'role':'form' }}) }}
+    
+    {{ form_row(form.title,{'attr':{ 'class':'form-control' }}) }}
+    
+    {{ form_row(form.content,{'attr':{ 'class':'form-control' }}) }}
+    
+    {{ form_row(form.author,{'attr':{ 'class':'form-control' }}) }}
+    
+    {{ form_row(form.image,{'attr':{ 'class':'file' }}) }}
+    {% if (img) != null %}
+    <div style="float: right;">
+      <img alt="{{ img.alt }}" src="{{ asset(img.url) }}" title="{{ img.alt }}" class="img-thumbnail img-responsive" width="128" height="128">
+    </div>
+    {% endif %}
+    
+    {{ form_row(form.Save,{'attr':{ 'class':'btn btn-primary' }}) }}
+    
+    
+    {{ form_end(form) }}
+
+
+    </div>
+    <div>
+    
+    </div>
+    <div>
+        
+    </div>
+     <div class='col-xs-3'>
+       {% for flash_message in app.session.flashBag.get('info') %}
+        <div class="flash-notice">
+            {{ flash_message|raw }}
+        </div>
+       {% endfor %}
+    </div>   
+  </div>
+{% endblock %}

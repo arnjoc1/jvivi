@@ -1,0 +1,148 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}{{ parent()}} | Users {% endblock %}
+{% block stylesheets %}
+   {{ parent()}}
+   <link id="bootstrap-style" href="{{ asset('admin/admin/metro/css/style-responsive.css')}}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+     <div class="row">
+        <div class="col-lg-12">
+           <h1 class="page-header"> Users</h1>
+           <ol class="breadcrumb">
+              <li>
+                 <i class="fa fa-dashboard"></i>  <a href="{{ path('vivimain_admin') }}">Admin</a>
+              </li>
+              <li class="active">
+                 <i class="fa fa-user"></i> Users
+              </li>
+				</ol>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-lg-6">
+          <div class="panel panel-default">
+			  <div class="panel-heading">
+             <h3 class="panel-title"><i class="fa fa-user fa-fw"></i> Users</h3>
+           </div>
+          <div class="panel-body">
+				<div class="row">
+					<di class="col-sm-9">
+						{% for flash_message in app.session.flashBag.get('info') %}
+                <div class="flash-notice">
+                   {{ flash_message|raw }}
+                </div>
+                 {% endfor %}
+					</di><di class="col-sm-3"><a href="{{path('vivimain_admin_user_register')}}" class="btn btn-default btn-sm">Add an user</a></div><br></di>
+				<div class="table-responsive">
+						<table class="table table-bordered table-hover table-striped">
+							 <thead>
+								  <tr>
+										<th>Username</th>
+										<th>Email</th>
+										<th>User-Role</th>
+										<th>Activated</th>
+										<th>Action</th>
+								  </tr>
+							 </thead>
+							 <tbody>
+								{% for user in users%}
+								  <tr>
+										<td><a href=" {{ path('vivimain_admin_article_view', {'id': user.id } )}} " class="btn btn-link"> {{ user.username|capitalize }} </a></td>
+										<td>{{ user.email }}</td>
+										<td><small><span class="text-warning">{% for role in user.roles%}<span>{{ role }}</span> {%endfor%}</span></small></td>
+										<td><span class="text-warning">{{ user.enabled }}</span></td>
+										<td>
+											<span><a href="{{ path('vivimain_admin_user_edit', {'id':user.id})}}" class="btn btn-default btn-sm"> <i class="fa fa-fw fa-edit"></i></a><a href="{{ path('vivimain_admin_user_del', {'id':user.id})}}" class="btn btn-sm btn-default"> <i class="fa fa-fw fa-trash"></i></a></span>
+										</td>
+								  </tr>
+								{% endfor %}
+							 </tbody>
+						</table>
+				  </div>
+          </div>
+			
+			 
+				
+			 </div>
+        </div>
+       <!--	fin col-lg-6 -->
+		 
+		  <div class="col-lg-6" style="display: {{ showDiv }};">
+          <div class="panel panel-default">
+			  <div class="panel-heading">
+             <h3 class="panel-title"><i class="fa fa-edit fa-fw"></i> New user</h3>
+           </div>
+          <div class="panel-body">
+				{% block fos_user_content %}
+
+				{% trans_default_domain 'FOSUserBundle' %}
+				<div class="col-lg-9 col-md-offset-2" >
+					<h3 class="text-primary" style="text-align:center;" > Register new account</h3>
+							<hr />	
+					 <form  class="form-signin" action="{{ path("vivimain_admin_user_edit", {'id':data['id']}) }}" method="post" class="{{ 'fos_user_registration_register'}}">
+						{% if errors[0] is defined %}
+							 <div class="alert alert-danger">
+							   {% for error in errors %}
+									<p>{{ error|raw }}</p>
+								{% endfor %}
+						  </div>
+						{% endif %}
+						
+						
+					 <label for="email">{{ 'form.email'|trans }}</label>
+					 <div class="form-group">
+					 <input type="email" class="form-control" id="email" name="fos_user_registration_form[email]" value="{% if data is defined%}{{ data['email']}}{% endif%}" required="required" />
+					 </div>
+					 <label for="username">{{ 'form.username'|trans }}</label>
+					 <div class="form-group">
+					 <input type="text" class="form-control" id="username" name="fos_user_registration_form[username]" value="{% if data is defined%}{{ data['username']}}{% endif%}" required="required" pattern=".{2,}"/>
+					 </div>
+					 <label for="password">{{ 'form.password'|trans }}</label>
+					 <div class="form-group">
+					 <input type="password" class="form-control" id="password" name="fos_user_registration_form[plainPassword][first]" placeholder="*****************"  />
+					 </div>
+					 <label for="password">{{ 'form.password_confirmation'|trans }}</label>
+					 <div class="form-group">
+					 <input type="password" class="form-control" id="password" name="fos_user_registration_form[plainPassword][second]" placeholder="****************" />
+					 </div>
+					 <div class="form-group">
+						<label for="name">Role(s)</label>
+                  <select multiple="yes" class="form-control" name="fos_user_registration_form[role][]">
+                 
+                  <option value="ROLE_USER">ROLE_USER</option> 
+                  <option value="ROLE_ADMIN">ROLE_ADMIN</option> 
+                  <option value="ROLE_SUPER_ADMIN">ROLE_SUPER_ADMIN</option>
+						</select>
+					 </div>
+					 <div class="radio">
+                 <label><input type="radio" name="fos_user_registration_form[enabled]" value="1">Enabled</label>
+                 <label><input type="radio" name="fos_user_registration_form[enabled]" value="0">Disabled</label>
+                </div>
+					 <p class="help-block"><small>Hold <span class="bg-danger">CTRL</span> for multiple choices.</small></p>
+					 <br>
+					
+					 <div>
+						  <input type="submit" class="btn btn-success btn-sm" value="{{ 'registration.submit'|trans }}" />
+					 </div>
+					 <div> <br /></div>
+					
+					 </form>
+				
+				    </div>
+				{% endblock fos_user_content %}
+          </div>
+     </div>
+			<div>
+			 {% for flash_message in app.session.flashBag.get('info') %}
+                <div class="flash-notice">
+                   {{ flash_message|raw }}
+                </div>
+          {% endfor %}
+		 </div>
+     </div>
+     </div>
+			 {{ dump() }}
+{% endblock %}

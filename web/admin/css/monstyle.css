@@ -1,0 +1,81 @@
+     /*CHAT PANEL*/
+ .chat-panel .panel-body {
+height: 450px;
+overflow-y: scroll;
+}
+ .chat-box {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+ .chat-box li {
+margin-bottom: 15px;
+padding-bottom: 5px;
+border-bottom: 1px dotted #808080;
+}
+ .chat-box li.left .chat-body {
+margin-left: 90px;
+}
+ .chat-box li .chat-body p {
+margin: 0;
+color: #8d8888;
+}
+.chat-img>img {
+    margin-left:20px;
+}
+body
+{
+    /*background-image: url('../img/bg-login.jpg');
+    background-repeat: no-repeat;*/
+}
+
+
+
+/* Login Box
+=================================================================== */
+
+.log-in {
+	width: 400px;
+	margin: 100px auto;
+	background: rgb(245,245,245); /* Old browsers */
+	overflow: hidden;
+	-webkit-box-shadow: 0px 0px 0px 5px #9cc773;
+       -moz-box-shadow: 0px 0px 0px 5px #9cc773;
+         	box-shadow: 0px 0px 0px 5px #9cc773;
+    
+}
+
+/*.log-in {
+	width: 400px;
+	margin: 100px auto;
+	background: rgb(245,245,245); /* Old browsers */
+	overflow: hidden;
+	-webkit-box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+       -moz-box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+         	box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+    
+}*/
+
+.log-ins{
+    width: 400px;
+	margin: 100px auto;
+	background: rgb(245,245,245); /* Old browsers */
+	overflow: hidden;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alert ul {
+    list-style-type: none;
+}
+.cola{
+    padding: 20px auto;
+}
+
+/* Upload field uniform*/
+
+div.uploader{
+	-webkit-border-radius:14px;
+	   -moz-border-radius:14px;
+			border-radius:14px;
+}	

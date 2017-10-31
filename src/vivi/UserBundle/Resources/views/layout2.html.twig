@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %} {{ parent()}}  <link href="{{ asset('admin/css/monstyle.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+<div class="login-body">
+  {% for key, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+      <div class="alert alert-{{ key }}">
+        {{ message|trans({}, 'FOSUserBundle') }}
+      </div>
+    {% endfor %}
+    {% endfor %}
+  
+	  <div class="log-ins">
+	  <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+        <div class="cola">
+  {% block fos_user_content %}
+  {% endblock fos_user_content %}
+
+        </div>
+        </div>
+    </div>
+		</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+        
+            {{ flash_message|raw }}
+        </div>
+        <div class="flash-notice">
+        <input class="input-file uniform_on" id="fileInput" type="file">
+        <span class="action" style="-webkit-user-select: none;">Choose File</span>
+        <span class="filename" style="-webkit-user-select: none;">No file selected</span>
+       {% endfor %}
+       {% for flash_message in app.session.flashBag.get('info') %}
+      </div>
+      </div>
+      <div class="controls">
+      <div class="uploader" id="uniform-fileInput">
+      <img alt="{{ img.alt }}" src="{{ asset(img.url) }}" title="{{ img.alt }}" class="img-thumbnail img-responsive" width="128" height="128">
+     <div class='col-xs-3'>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>   
+    <div class='col-xs-4'>
+    <div style="float: right;">
+    <div>
+    <div>
+    <h2>Add an article</h2>
+    {% if (img) != null %}
+    {{ form_end(form) }}
+    {{ form_row(form.author,{'attr':{ 'class':'form-control' }}) }}
+    {{ form_row(form.content,{'attr':{ 'class':'form-control' }}) }}
+    {{ form_row(form.image,{'attr':{ 'class':'file' }}) }}
+    {{ form_row(form.Save,{'attr':{ 'class':'btn btn-primary' }}) }}
+    {{ form_row(form.title,{'attr':{ 'class':'form-control' }}) }}
+    {{ form_start(form,{'attr':{ 'role':'form' }}) }}
+  </div>
+  <div class='container'>
+  {% endif %}
+{% block body %}
+{% block stylesheets %} {{ parent()}}  <link href="{{ asset('admin/css/monstyle.css') }}" rel="stylesheet" />
+{% block title %}{{ parent()}} | add article {% endblock %}
+{% endblock %}
+{% endblock %}
+{% extends "::base.html.twig" %}

@@ -1,0 +1,123 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}{{ parent()}} | Articles {% endblock %}
+{% block stylesheets %}
+   {{ parent()}}
+   <link id="bootstrap-style" href="{{ asset('admin/css/monstyle.css')}}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+     <div class="row">
+        <div class="col-lg-12">
+           <h1 class="page-header"> Articles</h1>
+           <ol class="breadcrumb">
+              <li>
+                 <i class="fa fa-dashboard"></i>  <a href="{{ path('vivimain_admin') }}">Admin</a>
+              </li>
+              <li class="active">
+                 <i class="fa fa-pencil"></i>articles
+              </li>
+				  <li class="active">
+                 <i class="fa fa-comment"></i>comments
+              </li>
+				</ol>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-lg-6">
+          <div class="panel panel-default">
+			  <div class="panel-heading">
+             <h3 class="panel-title"><i class="fa fa-pencil fa-fw"></i> Articles</h3>
+           </div>
+          <div class="panel-body">
+				<div class="row">
+					<di class="col-sm-9">
+						{% for flash_message in app.session.flashBag.get('info') %}
+                <div class="flash-notice">
+                   {{ flash_message|raw }}
+                </div>
+                 {% endfor %}
+					</di><di class="col-sm-3"><a href="{{path('vivimain_admin_addArticles')}}" class="btn btn-default btn-sm">Add article</a></div><br></di>
+				<div class="table-responsive">
+						<table class="table table-bordered table-hover table-striped">
+							 <thead>
+								  <tr>
+										<th>Article</th>
+										<th>Date</th>
+										<th>Author</th>
+										<th>Action</th>
+										<th>Comments</th>
+								  </tr>
+							 </thead>
+							 <tbody>
+								{% for article in articles %}
+								  <tr>
+										<td><a href=" {{ path('vivimain_admin_article_view', {'id': article.id } )}} " class="btn btn-link"> {{ article.title|capitalize }} </a></td>
+										<td>{{ article.date|date('d-m-Y') }}</td>
+										<td><span class="text-warning">{{ article.author }}</span></td>
+										<td>
+											<span><a href="{{ path('vivimain_admin_article_edit', {'id':article.id})}}" class="btn btn-default btn-sm"> <i class="fa fa-fw fa-edit"></i></a><a href="{{ path('vivimain_admin_article_delete', {'id':article.id})}}" class="btn btn-sm btn-default"> <i class="fa fa-fw fa-trash"></i></a></span>
+										</td>
+										<td><a href=" {{ path('vivimain_admin_art_com', {'id': article.id } )}} " class='btn btn-default btn-sm'> <i class="fa fa-fw fa-comment"> </i> View All</a></td>
+								  </tr>
+								{% endfor %}
+							 </tbody>
+						</table>
+				  </div>
+          </div>
+			
+			 
+				
+			 </div>
+        </div>
+       <!--	fin col-lg-6 -->
+		 
+		  <div class="col-lg-6" style="display: {{ showDiv }};">
+          <div class="panel panel-default">
+			  <div class="panel-heading">
+             <h3 class="panel-title">
+               <i class="fa fa-edit fa-fw"></i> Comments 
+                 <strong class="text-muted">/ {{ coms[0].articles.title }}
+             </strong></h3>
+           </div>
+          <div class="panel-body">
+				<ul class="chat-box">
+				   {% if "" != coms %}
+				   {% for com in coms %}
+				
+						<li class="left clearfix">
+							 <span class="chat-img pull-left">
+								  <img src="{{ asset('admin/img/user.png')}}" alt="User" class="img-circle">
+							 </span>
+							 <div class="chat-body">                                        
+										<strong>{{ com.author }}</strong>
+										<small class="pull-right text-muted">
+											 <i class="fa fa-clock-o fa-fw"></i>{{ com.date|date('d M Y') }}
+										</small>                                      
+								  <p>
+										{{ com.content|capitalize }}
+								  </p>
+								  <div class="rm-btn"><a href=" {{ path('vivimain_admin_art_com_del', {'art': artCom, 'id': com.id } )}} " class="btn btn-danger btn-xs pull-right">Delete</a></div>
+							 </div>
+						</li>                          
+
+				   {% else %}
+						<p>No comments for this article.</p>
+				   {% endfor %}
+					
+				   {% endif %}
+				</ul>
+          </div>
+     </div>
+			<div>
+			 {% for flash_message in app.session.flashBag.get('info') %}
+                <div class="alert alert-success">
+                   <button class="close" data-dismiss="alert">×</button>
+                   <strong>{{ flash_message|raw }}</strong>
+                </div>
+          {% endfor %}
+		 </div>
+     </div>
+     </div>
+{% endblock %}

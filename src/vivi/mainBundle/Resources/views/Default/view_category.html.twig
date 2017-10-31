@@ -1,0 +1,33 @@
+{% extends "vivimainBundle:public:template.html.twig" %}
+
+{% block title %}{{ parent()}} | Homepage {% endblock %}
+
+
+{% block body %}
+  
+      <div class="page-header art-title2">
+        <h3 class="">Category
+            <small>{{ cat.name|capitalize }}</small>
+        </h3>
+      </div><hr>
+    {% if cat.articles is defined %}
+   {% for art in cat.articles %}
+  
+     <div class="panel panel-green">
+      <div class="panel-body">
+        <a href="{{ path('vivimain_article_view', {'slug': art.slug } ) }}">
+        <img class="avatar" alt="{{ art.image.alt }}" src="{{ asset('uploads/images/' ~ art.image.url) }}" width="100">
+        <span class="marge-left">{{ art.title }}</span>
+        </a>
+      </div>
+     </div>
+     {% else%}
+       <div class="panel panel-green">
+      <div class="panel-body">
+       <span style="text-align: center"> No Articles found for this Category</span>
+        </div>
+      </div>
+   {% endfor %}
+   {% endif %}
+  
+{% endblock %}

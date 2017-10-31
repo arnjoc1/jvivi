@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parent()}} | Homepage {% endblock %}
+
+
+{% block body %}
+  <div class='container'>
+    <h2>List of Articles</h2>
+    <div class='col-xs-3'>
+       {% for flash_message in app.session.flashBag.get('info') %}
+        <div class="flash-notice">
+            {{ flash_message|raw }}
+        </div>
+       {% endfor %}
+    </div> 
+    <div>
+      <a href="{{ path('vivimain_add') }}" class="btn btn-success" role="button">Add article</a>
+    </div>
+    <div class='col-xs-6'>
+
+    <ul class="list-group">
+      {% for article in articles %}
+      <li class="list-group-item"><a href=" {{ path('vivimain_view', {'id': article.id } )}} " class="btn btn-link"> {{ article.title|capitalize }} </a>
+      <a href="{{ path('vivimain_delete', {'id':article.id})}}" class="btn btn-sm btn-default navbar-right"> Delete</a><a href="{{ path('vivimain_edit', {'id':article.id})}}" class="btn btn-default btn-sm navbar-right">Edit </a> 
+      <p><span>{{ article.date|date('d-m-Y') }}</span> By <span class="text-warning">{{ article.author }} </span></p></li>
+      {% endfor %}
+    </ul>
+
+    </div>
+    <div>
+     
+    </div>
+    
+    <div></div>
+  </div>
+{% endblock %}

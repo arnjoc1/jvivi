@@ -1,0 +1,25 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}{{ parent()}} | Admin Panel {% endblock %}
+
+
+{% block body %}
+{% include 'Default:header.html.twig'%}
+
+  <div class="col-lg-12">
+    <h1 class="page-header">
+        Welcome to
+        <small>Vivi Home</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i>  <a href="#">Plan du site</a>
+        </li>
+        <li class="active">
+            <i class="fa fa-file"></i> home page
+        </li>
+    </ol>
+  </div>
+{% include 'footer.html.twig'%}
+
+{% endblock %}

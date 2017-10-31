@@ -1,0 +1,8 @@
+vivi_user:
+    resource: "@viviUserBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+vivimain:
+    resource: "@vivimainBundle/Controller/"
+    type:     annotation
+

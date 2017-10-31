@@ -1,0 +1,58 @@
+{% extends "vivimainBundle:public:template.html.twig" %}
+
+{% block title %}{{ parent()}} | Homepage {% endblock %}
+
+
+{% block body %}
+  
+  <div class="panel panel-green">
+  <div class="panel-body">
+    <h3 class="art-title"> {{ article.title }}</h3><hr>
+    <img src="{{ asset('uploads/images/' ~ article.image.url ) }}" alt="{{ article.image.alt}}" class="pull-left"/>
+    
+      <span class="clearfix"> &nbsp;</span>
+       <p style="margin-top: 30px;">
+      {{ article.content|capitalize|raw }}
+      </p>
+        <p class="text-success pull-right"><strong> {{ article.author|capitalize }}</strong></p>
+     <span ></span>
+  </div>
+  </div>
+  <div class="panel panel-green">
+  <div class="panel-body">
+    <h3> Add a comment</h3><hr />
+    <div class="form-group col-xs-6">
+     
+      {{ render(controller('vivimainBundle:Main:addCom', { 'Slug': article.slug })) }}
+
+    </div>
+  </div>
+  </div>
+  <div class="panel panel-green">
+  <div class="panel-header">
+    <h3 style="margin-left: 40px"><span class="glyphicon glyphicon-comment"></span> {{ nbCom}} Comments added</h3>
+  </div>
+  </div>
+  <div class="">
+    {% for comment in comments %}
+      <div class="col-lg-8">
+     <div class="panel panel-green">
+     <div class="panel-body">
+       <ul class="chat">
+         <li class="left">
+           <img class="avatar" alt="User-photo" src="{{asset('admin/img/user.png')}}">
+           <span class="message"><span class="arrow"></span>
+           <span class="from"><b>{{ comment.author|capitalize }}</b></span>
+           <span class="time">{{ comment.date|date("Y-m-d h:i:sa") }}</span>
+           <span class="text">
+             {{ comment.content|capitalize }}
+            
+          </span>
+        </span>	                                  
+      </li>
+     </div>
+     </div>
+     </div>
+   {% endfor %}
+  </div>
+{% endblock %}

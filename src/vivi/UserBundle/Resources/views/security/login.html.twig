@@ -1,0 +1,48 @@
+{% extends "viviUserBundle::layout.html.twig" %}
+
+{% block title %}{{ parent()}} | Login {% endblock %}
+{% block stylesheets %}
+   {{ parent()}}
+   <link id="bootstrap-style" href="{{ asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
+{% endblock %}
+
+
+  {% trans_default_domain 'FOSUserBundle' %}
+  {% block fos_user_content %}
+	
+	
+            
+			<h3 class="text-primary" style="text-align:center;" > Connexion</h3>
+			<hr />		
+			<form  class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+				
+				{% if error %}
+                  <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            
+                <label for="username">{{ 'security.login.username'|trans }}</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" />
+                </div>
+                <label for="password">{{ 'security.login.password'|trans }}</label>
+                <div class="form-group">
+                <input type="password" class="form-control" id="password" name="_password" required="required" />
+                </div>
+                <div class="checkbox">
+                         &nbsp;   &nbsp; &nbsp;
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+               </div><br />
+                <input type="submit" class="btn btn-success btn-sm" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                <div>
+					<br />
+				</div>
+				
+				<label>Pas encore un compte ! <a href="{{path('fos_user_registration_register')}}">Inscris toi</a></label>
+				<div> <br /></div>
+            </form>
+			
+	  
+{% endblock fos_user_content %}
+

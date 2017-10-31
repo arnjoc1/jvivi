@@ -1,0 +1,96 @@
+vivimain_admin:
+    path:     /admin
+    defaults: { _controller: vivimainBundle:Admin:adminHome }
+    
+vivimain_admin_articles:
+    path:     /admin/articles
+    defaults: { _controller: vivimainBundle:Admin:adminArticles }
+    
+vivimain_admin_articles_view:
+    path:     /admin/articles/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminArticlesView }
+    
+vivimain_admin_addArticles:
+    path:     /admin/addArticle
+    defaults: { _controller: vivimainBundle:Admin:adminAddArticles }
+    
+vivimain_admin_articles_edit:
+    path:     /admin/articles_edit/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminAddArticles }
+    
+vivimain_admin_articles_delete:
+    path:     /admin/delete/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminArticlesDelete }
+    
+vivimain_admin_cats:
+    path:     /admin/category
+    defaults: { _controller: vivimainBundle:Admin:adminCats }
+
+vivimain_admin_addCat:
+    path:     /admin/Category/add
+    defaults: { _controller: vivimainBundle:Admin:adminCatAdd }
+    
+vivimain_admin_cat_edit:
+    path:     /admin/category/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminCatEdit }
+    
+vivimain_admin_cat_delete:
+    path:     /admin/category/delete/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminCatDelete }
+    
+vivimain_admin_art_com:
+    path:     /admin/comments/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminArtCom }
+
+vivimain_admin_art_com_del:
+    path:     /admin/comments/delete/{artCom}/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminArtComDel }
+
+vivimain_admin_user:
+    path:     /admin/users
+    defaults: { _controller: vivimainBundle:Admin:adminUsers }
+    
+    
+vivimain_admin_user_register:
+    path:     /admin/users/register
+    defaults: { _controller: vivimainBundle:Admin:adminUsersRegister }
+
+vivimain_admin_user_edit:
+    path:     /admin/users/edit/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminUsersEdit }
+
+vivimain_admin_user_del:
+    path:     /admin/users/delete/{id}
+    defaults: { _controller: vivimainBundle:Admin:adminUsersDel }
+
+vivimain_homepage:
+    path:     /
+    defaults: { _controller: vivimainBundle:Main:index }
+
+vivimain_add:
+    path:     /add_article
+    defaults: { _controller: vivimainBundle:Main:add_article }
+    
+vivimain_edit:
+    path:     /edit_article/{id}
+    defaults: { _controller: vivimainBundle:Main:add_article }
+    
+vivimain_view:
+    path:     /article/{id}
+    defaults: { _controller: vivimainBundle:Main:view_article }
+    
+vivimain_delete:
+    path:     /delete/{id}
+    defaults: { _controller: vivimainBundle:Main:delete_article }
+    
+vivimain_cat_articles:
+    path:     /category/{id}
+    defaults: { _controller: vivimainBundle:Main:cat_articles }
+    
+vivimain_test:
+    path:     /test
+    defaults: { _controller: vivimainBundle:Main:test }
+    
+vivimain_addCom:
+    path:     /addCom
+    defaults: { _controller: vivimainBundle:Main:addCom }
